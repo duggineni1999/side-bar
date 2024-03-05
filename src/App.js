@@ -3,6 +3,7 @@ import SideMenu, { menuItems } from "./components/SideMenu";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Updated import
 import { useState } from "react";
+import Header from "./components/Header";
 
 function App() {
   const [inactive, setInactive] = useState(false);
@@ -16,29 +17,6 @@ function App() {
             setInactive(inactive);
           }}
         />
-
-        <div className={`container ${inactive ? "inactive" : ""}`}>
-          <Routes>
-            {menuItems.map((menu, index) => (
-              <Route
-                key={menu.name}
-                path={menu.to}
-                element={<h1>{menu.name}</h1>}
-              />
-            ))}
-            {menuItems.map((menu, index) =>
-              menu.subMenus && menu.subMenus.length > 0
-                ? menu.subMenus.map((subMenu, i) => (
-                    <Route
-                      key={subMenu.name}
-                      path={subMenu.to}
-                      element={<h1>{subMenu.name}</h1>}
-                    />
-                  ))
-                : null
-            )}
-          </Routes>
-        </div>
       </Router>
     </div>
   );
